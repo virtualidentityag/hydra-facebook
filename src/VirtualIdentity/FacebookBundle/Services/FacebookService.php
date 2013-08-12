@@ -234,7 +234,7 @@ class FacebookService
             $this->qb->setMaxResults($limit);
         }
         if ($onlyApproved) {
-            $this->qb->andWhere(array('approved' => true));
+            $this->qb->andWhere('e.approved = true');
         }
         return $this->qb->getQuery()->getResult();
     }
