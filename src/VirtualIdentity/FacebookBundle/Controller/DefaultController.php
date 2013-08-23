@@ -139,6 +139,10 @@ class DefaultController extends Controller
                 $configurationEntity->getToken()
             );
             $service->setApiRequests($configurationEntity->getApiRequests());
+            
+            array_walk($hydraConfig['virtual_identity_facebook']['api_requests'], function(&$r) { 
+                $r = str_replace ("%", "%%", $r);
+            });            
 
             // save changes
             file_put_contents($hydraConfigFile, Yaml::dump($hydraConfig, 3));
